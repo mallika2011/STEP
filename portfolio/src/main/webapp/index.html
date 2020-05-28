@@ -1,18 +1,129 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Montserrat&family=Patua+One&family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./script.js"></script>
+    <title>Mallika Subramanian</title>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg mynavbar navbar-dark ">
+      <a class="navbar-brand myitem" href="#"><b>Mallz</b></a>
+      <button class="navbar-toggler navbar-dark " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon navbar-dark "></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="myitem nav-item nav-link"  href="#about">About</a>
+          <a class="myitem nav-item nav-link" href="#projects">Projects</a>
+          <a class="myitem nav-item nav-link" href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <!-- CONTENT -->
+    <div class ="wrapper">
+      <div class="welcome-image">
+        <div class = "greeting">
+          <h1 class="headings">Hello there!</h1>
+          <p style="font-family: 'Montserrat', sans-serif; font-size: 1.5vw;">
+            I am Mallika Subramanian <br />
+            And this is a part of my Google Internship Experience
+          </p>
+        </div>
     </div>
+    </div>
+    <div class="wrapper">
+        <div class="home-card left-cards" id="about">
+          <h2 class="sub-headings">About me</h2>
+          <p>
+            Hi! I am Mallika <br>
+            I am a 3rd year undergraduate student at IIIT Hyderabad <br>
+            I am currently pursuing my BTech. in Computer Science. I am an inquisitive student and an eager learner. <br>
+            I enjoy fields of Web Dev and Quantum computing. NLP and technology in linguistics also excites me! <br>
+            Interning with Google this summer is indeed a dream opporunity and I wish to make the best of it, making significant contributions learning new skills and making several new friends!
+            <br> I am a classically trained dancer and find dance in almost everything!
+          </p>
+        </div>
+        <div class="home-card" id="projects"> 
+          <h2 class="sub-headings">Interesting Projects</h2>
+          <p>Here are several fun projects I have worked on in the past. Click to view the Github repositories of these projects</p>
+          <div class="slideshow-container">
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 5</div>
+              <a href="https://github.com/mallika2011/Linux-C-Shell"><img class="slideshow-image" src="./images/shell.jpg"></a>
+              <div class="text"> <p class="captions">Linux C Shell </p></div>
+            </div>
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 5</div>
+              <a href="https://github.com/mallika2011/IOT-controlling-motor"><img class="slideshow-image" src="./images/iot.jpg"></a>
+              <div class="text"> <p class="captions">IoT Driven Motor </p></div>
+            </div>
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 5</div>
+              <a href="https://github.com/mallika2011/The-Mandalorian"><img class="slideshow-image" src="./images/game.jpg"></a>
+              <div class="text"> <p class="captions">Jetpack Joyride </p></div>
+            </div>
+            <div class="mySlides fade">
+              <div class="numbertext">4 / 5</div>
+              <img class="slideshow-image" src="./images/hotel.jpg">
+              <div class="text"> <p class="captions">PGWala Mobile App </p></div>
+            </div>
+            <div class="mySlides fade">
+              <div class="numbertext">5 / 5</div>
+              <a href="https://github.com/mallika2011/Mega-Mart"><img class="slideshow-image" src="./images/shopping2.jpg"></a>
+              <div class="text"> <p class="captions">Online Shopping WebApp</p> </div>
+            </div>
+          </div>
+          <br>
+          <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+          </div>
+        </div>
+        <div class="home-card right-cards" id="contact">
+          <h2 class="sub-headings">Contact me</h2>
+          <p>
+            I would love to get in touch with people and learn more along with making new friends! <br>
+            You can contact me via my institute email id : mallika.subramanian@students.iiit.ac.in <br>
+            Head over to my GitHub to view some of my works and projects in detail. Click <a href="">here</a> for more. <br>
+            Further social media links are available in the footer. <br>
+            Looking forward to hearing from you.
+          </p>
+        </div>
+    </div>
+    <div class="wrapper footer">
+      <div class="card text-center footer-colour">
+        <div class="card-body">
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-github"></a>
+        </div>
+        <div class="card-footer text-muted footer-colour">
+          <p style="color:azure"> &copy Mallika Subramanian 2020</p>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script src="./script.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
+
