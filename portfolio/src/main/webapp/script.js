@@ -13,10 +13,28 @@
 // limitations under the License.
 
 function getgreetingname(){
-    console.log("in this fucntion")
+    console.log("in greeting fucntion")
     fetch('/data').then(response => response.text()).then(name =>{
         document.getElementById('hello-name').innerText=name;
     });
+}
+
+function getComments(){
+    console.log("in comments function")
+    fetch('/comments').then(response => response.json()).then(myjson=>{
+        console.log(myjson);
+        const mycomments = document.getElementById('comments-list');
+        mycomments.innerHTML = '';
+        for(var i=0; i<myjson.length; i++)
+        {
+            mycomments.appendChild(createListElement(myjson[i]));
+        }
+    });
+}
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
 
 var slideIndex = 0;
@@ -35,6 +53,7 @@ function showSlides() {
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
+  console.log(slideIndex-1);
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 1500); // Change image every 2 seconds
