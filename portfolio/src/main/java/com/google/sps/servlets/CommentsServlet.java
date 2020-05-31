@@ -46,6 +46,12 @@ public class CommentsServlet extends HttpServlet {
     response.getWriter().println(json);
 
   }
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String comment = request.getParameter("new-comment");
+      comments.add(comment);
+      response.sendRedirect("/index.html");
+  }
   private String convertToJsonUsingGson(List<String> comments) {
     Gson gson = new Gson();
     String json = gson.toJson(comments);
