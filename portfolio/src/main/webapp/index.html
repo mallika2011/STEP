@@ -14,7 +14,7 @@
     <script src="./script.js"></script>
     <title>Mallika Subramanian</title>
   </head>
-  <body>
+  <body onload="getgreetingname()">
     <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-lg mynavbar navbar-dark ">
       <a class="navbar-brand myitem" href="#"><b>Mallz</b></a>
@@ -34,7 +34,8 @@
     <div class ="wrapper">
       <div class="welcome-image">
         <div class = "greeting">
-          <h1 class="headings">Hello there!</h1>
+          <!-- <h1 id="hello-name" class="headings">Hello <span id="hello-name"></span></h1> -->
+          <h1 id="hello-name" class="headings"></h1>
           <p style="font-family: 'Montserrat', sans-serif; font-size: 1.5vw;">
             I am Mallika Subramanian <br />
             And this is a part of my Google Internship Experience

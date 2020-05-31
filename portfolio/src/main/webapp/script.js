@@ -12,16 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+function getgreetingname(){
+    console.log("in this fucntion")
+    fetch('/data').then(response => response.text()).then(name =>{
+        document.getElementById('hello-name').innerText=name;
+    });
+}
+
 var slideIndex = 0;
 showSlides();
 
 function showSlides() {
   var i;
   var slides = document.getElementsByClassName("mySlides");
-  console.log(slides)
-//   var slides = $(".mySlides")
   var dots = document.getElementsByClassName("dot");
-//   var slides = $(".dot")
 
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
@@ -54,3 +58,4 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
