@@ -14,6 +14,10 @@
 
 package com.google.sps.servlets;
 import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +54,14 @@ public class CommentsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       String comment = request.getParameter("new-comment");
       comments.add(comment);
+      long timestamp = System.currentTimeMillis();
+
+      Entity newcomment = new Entity("comment");
+      newcomment.setProperty("comment",comment);
+      newcomment.setProperty("time",timestamp);
+
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(newcomment);
       response.sendRedirect("/index.html");
   }
   private String convertToJsonUsingGson(List<String> comments) {
