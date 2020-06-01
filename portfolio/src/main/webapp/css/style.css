@@ -214,11 +214,12 @@ p{
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
+	font-size:0.9vw;
 	font-weight:bold;
 	padding:10px 23px;
 	text-decoration:none;
 	text-shadow:0px 2px 0px #b23e35;
+    width: 20%;
 }
 .button:hover {
 	background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
