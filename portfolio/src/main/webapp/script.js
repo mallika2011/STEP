@@ -12,17 +12,91 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function getgreetingname(){
+    console.log("in greeting fucntion")
+    fetch('/data').then(response => response.text()).then(name =>{
+        document.getElementById('hello-name').innerText=name;
+    });
 }
+
+function getComments(){
+    console.log("in comments function")
+    var max = document.getElementById('max-select').value;
+    console.log("max = ",max)
+    fetch('/comments?max='+max).then(response => response.json()).then(myjson=>{
+        console.log(myjson);
+        const mycomments = document.getElementById('comments-list');
+        mycomments.innerHTML = '';
+        for(var i=0; i<myjson.length; i++)
+        {
+            mycomments.appendChild(createListElement(myjson[i]));
+        }
+    });
+}
+
+function deletecomments(){
+    const request = new Request('/delete-data',{method: 'POST'});
+
+    fetch(request)
+    .then(response => {
+        console.log(response)
+        if (response.status === 200) {
+        ;
+        } else {
+        throw new Error('There was an error!');
+        }
+    })
+    .then(response => {
+        getComments();
+    }).catch(error => {
+        console.error(error);
+    });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+//   console.log(slideIndex-1);
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 1500); // Change image every 2 seconds
+}
+
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
