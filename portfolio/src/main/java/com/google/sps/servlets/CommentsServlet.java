@@ -48,7 +48,7 @@ public class CommentsServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     Query query = new Query("comment").addSort("time", SortDirection.DESCENDING);
-    // Query query = new Query("comment");
+    int max = Integer.parseInt(request.getParameter("max"));
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -56,7 +56,9 @@ public class CommentsServlet extends HttpServlet {
 
     for(Entity entity : results.asIterable()){
         String comment = (String) entity.getProperty("comment");
-        comments.add(comment);
+        if(max>0)
+            comments.add(comment);
+        max=max-1;
     }
 
     String json = convertToJsonUsingGson(comments);

@@ -21,7 +21,9 @@ function getgreetingname(){
 
 function getComments(){
     console.log("in comments function")
-    fetch('/comments').then(response => response.json()).then(myjson=>{
+    var max = document.getElementById('max-select').value;
+    console.log("max = ",max)
+    fetch('/comments?max='+max).then(response => response.json()).then(myjson=>{
         console.log(myjson);
         const mycomments = document.getElementById('comments-list');
         mycomments.innerHTML = '';
@@ -31,6 +33,26 @@ function getComments(){
         }
     });
 }
+
+function deletecomments(){
+    const request = new Request('/delete-data',{method: 'POST'});
+
+    fetch(request)
+    .then(response => {
+        console.log(response)
+        if (response.status === 200) {
+        ;
+        } else {
+        throw new Error('There was an error!');
+        }
+    })
+    .then(response => {
+        getComments();
+    }).catch(error => {
+        console.error(error);
+    });
+}
+
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;

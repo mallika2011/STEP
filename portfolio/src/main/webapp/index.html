@@ -106,6 +106,17 @@
         </div>
         <div class="home-card left-cards" id="contact">
           <h2 class="sub-headings">Comments</h2>
+          <p>Select max number of comments to be displayed</p>
+          <span>
+            <select id="max-select" onchange="getComments()">
+            <option value="1">1
+            <option value="2">2
+            <option value="3">3
+            <option value="4">4
+            <option value="5">5
+            </select>
+          </span>
+          <br/><br/>
           <p id = "comments-list">
             
           </p>
@@ -114,7 +125,10 @@
             <input type="text" name="new-comment" style="width:30%">
             <br/><br/>
             <input class ="button" type="submit" />
-        </form>
+          </form>
+          <br/><br/>
+          <p>Click here to delete all comments</p>
+          <button class ="button" name="button" onclick="deletecomments()">Delete</button>
         </div>
     </div>
     <div class="wrapper footer">
