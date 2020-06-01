@@ -17,6 +17,9 @@ import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -30,30 +33,41 @@ import java.util.ArrayList;
 @WebServlet("/comments")
 public class CommentsServlet extends HttpServlet {
 
-  private List<String> comments;
+//   private List<String> comments;
 
-  @Override
-  public void init() {
-    comments = new ArrayList<>();
-    comments.add("Loved the styling of this webpage");
-    comments.add("Your dog is adorable");
-    comments.add("Do you like pizzas or burgers");
-    comments.add("The weather in Hyderabad is quite sunny");
-    comments.add("Google is awesome!");
-  }
+//   @Override
+//   public void init() {
+//     // comments = new ArrayList<>();
+//     // comments.add("Loved the styling of this webpage");
+//     // comments.add("Your dog is adorable");
+//     // comments.add("Do you like pizzas or burgers");
+//     // comments.add("The weather in Hyderabad is quite sunny");
+//     // comments.add("Google is awesome!");
+//   }
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
+    Query query = new Query("comment").addSort("time", SortDirection.DESCENDING);
+    // Query query = new Query("comment");
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    List<String> comments = new ArrayList<>();
+
+    for(Entity entity : results.asIterable()){
+        String comment = (String) entity.getProperty("comment");
+        comments.add(comment);
+    }
+
     String json = convertToJsonUsingGson(comments);
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       String comment = request.getParameter("new-comment");
-      comments.add(comment);
+    //   comments.add(comment);
       long timestamp = System.currentTimeMillis();
 
       Entity newcomment = new Entity("comment");
